@@ -1,0 +1,26 @@
+@startuml
+title Componentes - Visão Geral
+
+package "Frontend" {
+  [Blade Views]
+  [Bootstrap]
+}
+
+package "Backend" {
+  [Laravel Controllers]
+  [Models]
+  [Services]
+}
+
+package "Infra" {
+  [MySQL/MariaDB]
+  [Storage (local/public)]
+}
+
+[Blade Views] --> [Laravel Controllers]
+[Laravel Controllers] --> [Models]
+[Laravel Controllers] --> [Services]
+[Models] --> [MySQL/MariaDB]
+[Laravel Controllers] --> [Storage (local/public)]
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+title Sequência - Farmácia Matriz cria Filial (com documento)
+
+autumber
+actor "Farmácia Matriz" as Matriz
+participant "Browser" as B
+participant "FiliaisFarmaciaController" as C
+participant "Storage (local)" as S
+participant "BD" as DB
+
+Matriz -> B : Abrir /pharmacy/filiais
+B -> C : GET /pharmacy/filiais
+C --> B : View (lista + modal)
+
+Matriz -> B : Preencher dados + anexar PDF (alvará)
+B -> C : POST /pharmacy/filiais (multipart)
+C -> C : Validar dados + ficheiros
+alt Válido
+  C -> S : store(branch_document)
+  S --> C : document_path
+  opt Imagem opcional
+    C -> S : store(branch_image)
+    S --> C : image_path
+  end
+  C -> DB : Criar PharmacyBranch (document_path, image_path,...)
+  DB --> C : OK
+  C --> B : redirect + sucesso
+else Inválido
+  C --> B : redirect + erros
+end
+
+@enduml

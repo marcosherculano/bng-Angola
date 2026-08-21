@@ -1,0 +1,20 @@
+@startuml
+title Atividade - Admin enviar/actualizar Alvará
+
+start
+:Admin abre /admin/farmacias;
+:Selecciona farmácia;
+:Abre modal "Enviar/Actualizar Alvará";
+:Escolhe ficheiro;
+:Submete;
+if (Ficheiro válido?) then (Sim)
+  :Guardar ficheiro (storage/app/...);
+  :Actualizar alvara_document_path na BD;
+  :Registar actividade;
+  :Mostrar mensagem de sucesso;
+else (Não)
+  :Mostrar erros de validação;
+endif
+stop
+
+@enduml

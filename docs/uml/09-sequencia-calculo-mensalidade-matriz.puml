@@ -1,0 +1,18 @@
+@startuml
+title Sequência - Cálculo de Mensalidade (Matriz)
+
+autumber
+actor "Farmácia" as Farma
+participant "PharmacyController/View" as V
+participant "Pharmacy (Model)" as P
+participant "BD" as DB
+
+Farma -> V : Abrir Painel
+V -> P : calculateMonthlyAmountV7()
+P -> DB : Ler monthly_fee da matriz
+P -> DB : Buscar filiais ativas/aprovadas
+P -> DB : Somar monthly_fee das filiais
+P --> V : valor total
+V --> Farma : Exibir total e resumo
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+title Estados - Pedido (alto nível)
+
+[*] --> Criado
+Criado --> EmProcessamento
+EmProcessamento --> Pronto
+Pronto --> Entregue
+Criado --> Cancelado
+EmProcessamento --> Cancelado
+
+@enduml

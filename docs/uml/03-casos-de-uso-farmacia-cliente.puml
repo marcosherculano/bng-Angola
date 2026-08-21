@@ -1,0 +1,44 @@
+@startuml
+title Casos de Uso - Farmácia e Cliente
+
+left to right direction
+actor "Farmácia Normal" as FarmaNormal
+actor "Farmácia Matriz" as FarmaMatriz
+actor "Farmácia Filial" as FarmaFilial
+actor "Cliente" as Cliente
+
+rectangle "Portal Farmácia" {
+  usecase "Entrar" as FUC1
+  usecase "Ver Painel" as FUC2
+  usecase "Gerir Filiais" as FUC3
+  usecase "Adicionar Filial" as FUC4
+  usecase "Enviar Documento (Alvará)" as FUC5
+  usecase "Actualizar Dados da Filial" as FUC6
+}
+
+rectangle "Portal Cliente" {
+  usecase "Registar" as CUC1
+  usecase "Entrar" as CUC2
+  usecase "Pesquisar/Ver Farmácias" as CUC3
+  usecase "Criar Pedido" as CUC4
+}
+
+FarmaNormal --> FUC1
+FarmaNormal --> FUC2
+
+FarmaMatriz --> FUC1
+FarmaMatriz --> FUC2
+FarmaMatriz --> FUC3
+FarmaMatriz --> FUC4
+FarmaMatriz --> FUC5
+FarmaMatriz --> FUC6
+
+FarmaFilial --> FUC1
+FarmaFilial --> FUC2
+
+Cliente --> CUC1
+Cliente --> CUC2
+Cliente --> CUC3
+Cliente --> CUC4
+
+@enduml

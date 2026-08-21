@@ -1,0 +1,33 @@
+@startuml
+title Classes - Domínio (alto nível)
+
+class Pharmacy {
+  +id
+  +business_name
+  +type
+  +is_active
+  +monthly_fee
+  +alvara_document_path
+  +calculateMonthlyAmountV7()
+}
+
+class PharmacyBranch {
+  +id
+  +pharmacy_id
+  +business_name
+  +status
+  +monthly_fee
+  +document_path
+  +image_path
+}
+
+class Order {
+  +id
+  +status
+  +created_at
+}
+
+Pharmacy "1" -- "0..*" PharmacyBranch : possui
+Pharmacy "1" -- "0..*" Order : recebe
+
+@enduml

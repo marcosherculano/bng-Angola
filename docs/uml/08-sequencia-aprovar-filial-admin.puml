@@ -1,0 +1,17 @@
+@startuml
+title Sequência - Admin aprovar Filial
+
+autumber
+actor Admin
+participant "Browser" as B
+participant "FiliaisAdminController" as C
+participant "BD" as DB
+
+Admin -> B : Clicar "Aprovar" na filial
+B -> C : PUT /admin/filiais/{branch}/aprovar
+C -> DB : Atualizar status/aprovado/activo
+DB --> C : OK
+C --> B : redirect + mensagem
+B --> Admin : confirmação
+
+@enduml

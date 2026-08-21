@@ -1,0 +1,29 @@
+@startuml
+title Classes - Autenticação e Perfis (alto nível)
+
+class User {
+  +id
+  +name
+  +email
+  +password
+  +role
+}
+
+class Pharmacy {
+  +id
+  +user_id
+  +type
+}
+
+User "1" -- "0..1" Pharmacy : pode estar associado
+
+note right of User
+Roles (exemplos):
+- admin
+- pharmacy_normal
+- pharmacy_matrix
+- pharmacy_branch
+- client
+end note
+
+@enduml

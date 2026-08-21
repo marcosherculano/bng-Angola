@@ -1,0 +1,27 @@
+@startuml
+title Sequência - Admin baixar Alvará
+
+autumber
+actor Admin
+participant "Browser" as B
+participant "FarmaciasAdminController" as C
+participant "Storage (local/public)" as S
+participant "BD" as DB
+
+Admin -> B : Clicar "Baixar Alvará"
+B -> C : GET /admin/farmacias/{id}/alvara-documento
+C -> DB : Ler alvara_document_path
+DB --> C : path
+C -> S : exists(path / variantes)
+alt Encontrou
+  S --> C : OK
+  C -> S : download(path)
+  S --> B : stream ficheiro
+  B --> Admin : download
+else Não encontrou
+  S --> C : NOT FOUND
+  C --> B : redirect + mensagem erro
+  B --> Admin : ver erro
+end
+
+@enduml

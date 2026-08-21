@@ -1,0 +1,17 @@
+@startuml
+title Atividade - Registo de Cliente
+
+start
+:Cliente abre página de registo;
+:Preenche dados obrigatórios;
+:Submete formulário;
+if (Dados válidos?) then (Sim)
+  :Criar utilizador;
+  :Autenticar sessão;
+  :Redirecionar para área do cliente;
+else (Não)
+  :Apresentar erros de validação;
+endif
+stop
+
+@enduml

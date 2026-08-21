@@ -1,0 +1,21 @@
+@startuml
+title Casos de Uso - Admin
+
+left to right direction
+actor "Admin" as Admin
+
+rectangle "Admin" {
+  usecase "Listar Farmácias" as UC1
+  usecase "Activar/Desactivar Farmácia" as UC2
+  usecase "Actualizar Mensalidade Base" as UC3
+  usecase "Baixar Alvará" as UC4
+  usecase "Enviar/Actualizar Alvará" as UC5
+}
+
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+
+@enduml

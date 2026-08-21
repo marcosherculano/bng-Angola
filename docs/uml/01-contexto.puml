@@ -1,0 +1,23 @@
+@startuml
+title Diagrama de Contexto - BNG Angola
+
+actor "Admin" as Admin
+actor "Farmácia" as Farma
+actor "Cliente" as Cliente
+
+rectangle "Sistema BNG Angola" {
+  (Gestão de Farmácias e Filiais) as UC1
+  (Gestão de Documentos - Alvará) as UC2
+  (Mensalidades) as UC3
+}
+
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+
+Farma --> UC1
+Farma --> UC2
+
+Cliente --> UC1
+
+@enduml

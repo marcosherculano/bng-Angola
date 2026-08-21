@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+class LoginController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
+
+    protected function redirectTo(): string
+    {
+        $user = request()->user();
+
+        if (! $user) {
+            return RouteServiceProvider::HOME;
+        }
+
+        if ($user->role === 'admin') {
+            return '/admin/painel';
+        }
+
+        if ($user->role === 'client') {
+            return '/client/painel';
+        }
+
+        if (in_array($user->role, ['pharmacy_normal', 'pharmacy_matrix', 'pharmacy_branch'], true)) {
+            return '/pharmacy/painel';
+        }
+
+        return RouteServiceProvider::HOME;
+    }
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+        $this->middleware('throttle:5,8')->only('login');
+    }
+}

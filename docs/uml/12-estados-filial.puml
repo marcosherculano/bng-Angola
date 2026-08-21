@@ -1,0 +1,10 @@
+@startuml
+title Estados - Filial (alto nível)
+
+[*] --> Pendente
+Pendente --> Aprovada : Admin aprova
+Aprovada --> Activa : Activar
+Activa --> Inactiva : Desactivar
+Inactiva --> Activa : Activar
+
+@enduml
